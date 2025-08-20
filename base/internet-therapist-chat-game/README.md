@@ -100,19 +100,50 @@ src/
 - `NEXT_PUBLIC_APP_NAME`: Application name
 - `NEXT_PUBLIC_APP_VERSION`: Application version
 
-## Deployment
+## Production Deployment
 
-### Vercel (Recommended)
+### Option 1: Docker Deployment (Recommended)
 
-1. Connect your repository to Vercel
-2. Add environment variables in Vercel dashboard
-3. Deploy automatically on push
+1. **Build and run with Docker Compose**:
+   ```bash
+   # Set your API key in environment
+   export NEXT_PUBLIC_VENICE_AI_API_KEY=your_actual_api_key_here
+   
+   # Build and start the container
+   docker-compose up -d
+   ```
 
-### Other Platforms
+2. **Or build manually**:
+   ```bash
+   # Build the Docker image
+   docker build -t internet-therapist-chat .
+   
+   # Run the container
+   docker run -p 3000:3000 \
+     -e NEXT_PUBLIC_VENICE_AI_API_KEY=your_api_key_here \
+     internet-therapist-chat
+   ```
 
-- Ensure environment variables are configured
-- Run `npm run build` for production build
-- Serve the `out` directory
+### Option 2: Traditional Deployment
+
+1. **Build for production**:
+   ```bash
+   npm run build:prod
+   ```
+
+2. **Start production server**:
+   ```bash
+   npm run start:prod
+   ```
+
+### Option 3: Platform Deployment
+
+- **Vercel**: Connect your GitHub repository to Vercel
+- **Netlify**: Deploy using Netlify's Next.js integration
+- **Railway**: Deploy with one-click Railway deployment
+- **DigitalOcean App Platform**: Deploy using App Platform
+
+**Important**: Always configure your Venice AI API key in the deployment environment variables.
 
 ## Security & Privacy
 

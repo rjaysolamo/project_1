@@ -15,7 +15,6 @@ import { localStorageService, createSessionId } from '../services/localStorage';
 
 export default function SessionPage() {
   const [messages, setMessages] = useState<Message[]>([]);
-  const [, setIsLoading] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [playerStats, setPlayerStats] = useState<PlayerStats>({
     level: 1,
@@ -94,64 +93,9 @@ export default function SessionPage() {
     localStorageService.savePlayerStats(playerStats);
   };
 
-  const handleSendMessage = async (text: string) => {
-    const userMessage: Message = {
-      id: `user-${Date.now()}`,
-      text,
-      sender: 'user' as const,
-      timestamp: new Date()
-    };
+  // Message handling is done by ChatInterface component
 
-    const newMessages = [...messages, userMessage];
-    setMessages(newMessages);
-    setIsLoading(true);
-
-    try {
-      const response = await conversationFlow.processUserMessage(text);
-
-      const aiMessage: Message = {
-        id: `ai-${Date.now()}`,
-        text: response.text,
-        sender: 'therapist' as const,
-        timestamp: new Date()
-      };
-
-      const finalMessages = [...newMessages, aiMessage];
-      setMessages(finalMessages);
-      
-      // Update player stats
-      const updatedStats = {
-        ...playerStats,
-        totalMessages: playerStats.totalMessages + 1,
-        experience: playerStats.experience + 10
-      };
-      setPlayerStats(updatedStats);
-      localStorageService.savePlayerStats(updatedStats);
-
-      // Auto-save session
-      setTimeout(saveCurrentSession, 100);
-    } catch (error) {
-      console.error('Error processing message:', error);
-      const errorMessage: Message = {
-        id: `error-${Date.now()}`,
-        text: 'I apologize, but I\'m having trouble responding right now. Please try again.',
-        sender: 'therapist' as const,
-        timestamp: new Date()
-      };
-      setMessages(prev => [...prev, errorMessage]);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleMoodChange = (mood: string, _intensity: number) => {
-    setCurrentMood(mood as MoodState);
-    setSessionProgress(prev => ({
-      ...prev,
-      mood
-    }));
-    saveCurrentSession();
-  };
+  // Mood handling is done by MoodTracker component
 
   const handleEndSession = () => {
     const session = {

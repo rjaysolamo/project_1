@@ -48,8 +48,11 @@ const nextConfig: NextConfig = {
     CUSTOM_KEY: process.env.NODE_ENV
   },
   
-  // Enable standalone output for Docker
-  output: 'standalone'
+  // Vercel deployment optimization
+  trailingSlash: false,
+  
+  // Remove standalone output for Vercel deployment
+  // output: 'standalone' // Only needed for Docker
 };
 
 export default nextConfig;

@@ -1,0 +1,118 @@
+# Dependencies
+node_modules/
+/node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Environment Variables & API Keys
+.env
+.env.*
+.env.local
+.env.development
+.env.test
+.env.production
+.env.staging
+*.env
+
+# Next.js Build Output
+/.next/
+/out/
+.next
+build/
+dist/
+
+# Production Build
+/build
+/dist
+*.tgz
+*.tar.gz
+
+# Runtime Data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage Directory
+coverage/
+*.lcov
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# IDE & Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS Generated Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary Files
+*.tmp
+*.temp
+/tmp/
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Blockchain & Web3 Sensitive Data
+# Private Keys & Wallets
+*.key
+*.pem
+*.p12
+*.pfx
+wallet.json
+keystore/
+private-keys/
+
+# Blockchain Networks Config
+networks.json
+deployments/
+.openzeppelin/
+
+# Smart Contract Artifacts
+artifacts/
+cache/
+typechain/
+typechain-types/
+
+# Security & Audit
+security-audit.json
+.slither/
+
+# Local Development
+.local
+*.local
+
+# Package Manager Lock Files (optional - keep if team uses same manager)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Testing
+.nyc_output
+coverage/
+*.lcov
+
+# Misc
+*.tsbuildinfo
+next-env.d.ts

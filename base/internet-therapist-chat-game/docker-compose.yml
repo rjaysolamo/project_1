@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  internet-therapist-chat:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_VENICE_AI_API_KEY=${NEXT_PUBLIC_VENICE_AI_API_KEY}
+      - NEXT_PUBLIC_APP_NAME=Internet Therapist Chat Game
+      - NEXT_PUBLIC_APP_VERSION=1.0.0
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - therapist-network
+
+networks:
+  therapist-network:
+    driver: bridge

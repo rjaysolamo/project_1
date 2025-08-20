@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import {  EmotionType, MoodEntry } from '../types/game';
+import {  EmotionType, MoodEntry, MoodState } from '../types/game';
 
 interface MoodTrackerProps {
   onMoodSubmit: (moodEntry: MoodEntry) => void;
@@ -36,10 +36,18 @@ export default function MoodTracker({ onMoodSubmit, isCompact = false }: MoodTra
     );
   };
 
+  const convertMoodToState = (moodValue: number): MoodState => {
+    if (moodValue <= 2) return 'very_negative';
+    if (moodValue <= 4) return 'negative';
+    if (moodValue <= 6) return 'neutral';
+    if (moodValue <= 8) return 'positive';
+    return 'very_positive';
+  };
+
   const handleSubmit = () => {
     const moodData: MoodEntry = {
       timestamp: Date.now(),
-      mood: selectedMood,
+      mood: convertMoodToState(selectedMood),
       emotions: selectedEmotions,
       intensity,
     };

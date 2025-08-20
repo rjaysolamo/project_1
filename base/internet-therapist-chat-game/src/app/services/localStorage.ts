@@ -1,5 +1,5 @@
 import { Message } from '../types';
-import { PlayerStats, SessionProgress } from '../types/game';
+import { PlayerStats } from '../types/game';
 interface UserPreferences {
   therapistPersonality: string;
   responseStyle: string;
@@ -79,11 +79,11 @@ class LocalStorageService {
       const parsed = JSON.parse(item);
       // Handle date parsing for conversation sessions
       if (key === STORAGE_KEYS.CONVERSATION_HISTORY && Array.isArray(parsed)) {
-        return parsed.map((session: any) => ({
+        return parsed.map((session: ConversationSession) => ({
           ...session,
           startTime: new Date(session.startTime),
           endTime: session.endTime ? new Date(session.endTime) : undefined,
-          messages: session.messages.map((msg: any) => ({
+          messages: session.messages.map((msg: Message) => ({
             ...msg,
             timestamp: new Date(msg.timestamp)
           }))

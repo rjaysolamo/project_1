@@ -15,7 +15,7 @@ import { localStorageService, createSessionId } from '../services/localStorage';
 
 export default function SessionPage() {
   const [messages, setMessages] = useState<Message[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [, setIsLoading] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [playerStats, setPlayerStats] = useState<PlayerStats>({
     level: 1,
@@ -78,6 +78,7 @@ export default function SessionPage() {
       // Save session on unmount
       saveCurrentSession();
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const saveCurrentSession = () => {
@@ -143,7 +144,7 @@ export default function SessionPage() {
     }
   };
 
-  const handleMoodChange = (mood: string, intensity: number) => {
+  const handleMoodChange = (mood: string, _intensity: number) => {
     setCurrentMood(mood as MoodState);
     setSessionProgress(prev => ({
       ...prev,

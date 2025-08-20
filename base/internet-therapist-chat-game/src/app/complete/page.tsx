@@ -26,7 +26,7 @@ export default function CompletePage() {
             <ul className="text-sm text-blue-800 space-y-1">
               <li>• Your feelings are valid</li>
               <li>• Progress takes time</li>
-              <li>• You're not alone in this</li>
+              <li>• You&apos;re not alone in this</li>
             </ul>
           </div>
           

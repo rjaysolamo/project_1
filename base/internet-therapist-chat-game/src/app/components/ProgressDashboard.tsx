@@ -1,6 +1,6 @@
 'use client';
 
-import { SessionProgress, PlayerStats, Achievement } from '../types/game';
+import { SessionProgress, PlayerStats } from '../types/game';
 
 interface ProgressDashboardProps {
   currentSession: SessionProgress | null;

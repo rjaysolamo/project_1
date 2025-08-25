@@ -7,7 +7,12 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    router.push('/session');
+    // Add a small delay to ensure proper hydration
+    const timer = setTimeout(() => {
+      router.push('/session');
+    }, 100);
+    
+    return () => clearTimeout(timer);
   }, [router]);
 
   return (

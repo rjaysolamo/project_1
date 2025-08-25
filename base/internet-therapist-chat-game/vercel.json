@@ -4,12 +4,7 @@
   "framework": "nextjs",
   "installCommand": "npm install",
   "devCommand": "npm run dev",
-  "rewrites": [
-    {
-      "source": "/((?!api|_next/static|_next/image|favicon.ico).*)",
-      "destination": "/"
-    }
-  ],
+
   "headers": [
     {
       "source": "/(.*)",
